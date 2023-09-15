@@ -84,7 +84,7 @@ export default function Map() {
             <h1 className='text-xl font-extrabold'>Solar Mapper</h1>
           </div>
           <div className='flex items-center gap-3'>
-            <span className='text-sm text-muted-foreground'>area da direita</span>
+            <span className='text-sm text-muted-foreground'>repositório do projeto {'>'}</span>
             <Separator orientation='vertical' className='h-6' />
             <Button
               variant='outline'
