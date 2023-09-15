@@ -1,12 +1,15 @@
-import { InsightProps } from "@/app/interface/insightInterface";
-
-type AddressInsightProps = {
+import { InsightProps } from "@/app/interface/insightInterface"
+interface ErrorProps {
+  code: number
+  message: string
+  status: string
+}
+interface AddressInsightProps  {
   data: InsightProps
   address: string
 }
 
 export const SelectedCard: React.FC<AddressInsightProps | ErrorProps > = ({data, address }) => {
-
   const {solarPotential} =  data!;
   const {message}: ErrorProps = data?.solarPotential === undefined  ? data : "";
 
