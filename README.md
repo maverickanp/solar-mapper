@@ -12,6 +12,14 @@ yarn dev
 pnpm dev
 ```
 
+Copy those environment variables to a .env file
+
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY={provide your google maps api key}
+NEXT_PUBLIC_SOLARPIPE_ADDRESSES=https://challenge.solarpipe.com.br/addresses
+NEXT_PUBLIC_GOOGLE_API_BUILDING_INSIGHTS=https://solar.googleapis.com/v1/buildingInsights:findClosest
+NEXT_PUBLIC_GOOGLE_API_DATA_LAYERS=https://solar.googleapis.com/v1/dataLayers:get
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
