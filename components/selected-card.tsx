@@ -11,7 +11,7 @@ interface AddressInsightProps  {
 
 
 
-export const SelectedCard: React.FC<AddressInsightProps | ErrorProps > = ({data, address }) => {
+export const SelectedCard: React.FC<AddressInsightProps | ErrorProps > = ({data, address }:any) => {
   const {solarPotential} =  data!;
   const {message}: ErrorProps = data?.solarPotential === undefined  ? data : "";
 

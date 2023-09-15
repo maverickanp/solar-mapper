@@ -23,8 +23,8 @@ type MapOptions = google.maps.MapOptions;
 
 export default function Map() {
   // const [address, setAddress] = useState<LatLngLiteral>()
-  const [addressData, setAddressData] = useState<AddressProps[]>([])
-  const [insightData, setInsightData] = useState<InsightProps | ErrorProps>()
+  const [addressData, setAddressData] = useState<AddressProps[] | any>([])
+  const [insightData, setInsightData] = useState<InsightProps | ErrorProps | any>()
   const [selectedAddress, setSelectedAddress] = useState<string>('')
 
   const mapRef = useRef<GoogleMap>();
@@ -41,7 +41,7 @@ export default function Map() {
     []
   );
 
-  const onLoad = useCallback((map) => (mapRef.current = map), []);
+  const onLoad = useCallback((map:any) => (mapRef.current = map), []);
 
   useEffect(() => {
     const getData = async () => {
@@ -51,9 +51,6 @@ export default function Map() {
     getData();
   }, []);
 
-  const fetchLocation = (spot: LatLngLiteral) => {
-    console.log('MARKER CLICK', spot);
-  }
 
   const handleGithubInfo = () => {
     return window.location.href = 'https://github.com/maverickanp/solar-mapper'
@@ -105,7 +102,7 @@ export default function Map() {
               >
                 <MarkerClusterer>
                   {(clusterer) =>
-                    addressData?.map((address) => (
+                    addressData?.map((address:AddressProps) => (
                       <Marker
                         key={address.uuid}
                         position={
@@ -117,9 +114,6 @@ export default function Map() {
                         title={address.description}
                         clusterer={clusterer}
                         label={address.description}
-                        onClick={() => {
-                          fetchLocation(address);
-                        }}
                       />
                     ))
                   }
