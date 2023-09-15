@@ -9,9 +9,16 @@ interface AddressInsightProps  {
   address: string
 }
 
+
+
 export const SelectedCard: React.FC<AddressInsightProps | ErrorProps > = ({data, address }) => {
   const {solarPotential} =  data!;
   const {message}: ErrorProps = data?.solarPotential === undefined  ? data : "";
+
+const handleSavings = () => {
+  return `R$`
+}
+
 
   return (
     <div className='text-left mt-2'>
@@ -25,7 +32,7 @@ export const SelectedCard: React.FC<AddressInsightProps | ErrorProps > = ({data,
             Generation Potential: {solarPotential.maxSunshineHoursPerYear}
           </p>
           <p className="text-sm font-normal">
-            MaxArrayPanelsCount: {solarPotential.maxArrayPanelsCount}
+            Expected Savings: {handleSavings()}
           </p>
         </>        
       ) : <p className='text-sm text-red-500'>Erro: {data?.solarPotential !== undefined ? '' : message} </p>

@@ -17,9 +17,6 @@ export const AddressCard: React.FC<AddressDataProps> = ({
 data,
 selected
 }) => {
-  console.log('addressCard:',data);
-  console.log('addressCard:',selected);
-
   return (
     <div className={cn('text-left rounded-lg bg-slate-100 p-2 mb-2 cursor-pointer hover:bg-blue-300 hover:border-blue-600 border',
     selected ? 'border-blue-600 bg-blue-300' : ''

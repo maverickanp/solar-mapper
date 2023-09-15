@@ -1,6 +1,8 @@
 'use client'
 import Map from "@/components/map";
 import { useLoadScript } from "@react-google-maps/api";
+import { parseArgs } from "util";
+import RootLayout from "./layout";
 
 
 export default function Home() {
@@ -9,5 +11,9 @@ export default function Home() {
   });
 
   if (!isLoaded) return <div>Loading...</div>;
-  return <Map />;
+  return (
+    <>
+      <Map />
+    </>
+  )
 }

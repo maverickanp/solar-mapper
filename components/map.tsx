@@ -1,27 +1,25 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
-
 import {
   GoogleMap,
   Marker,
-  useLoadScript,
   MarkerClusterer,
 } from "@react-google-maps/api";
+import RootLayout from "@/app/layout";
 import { Github } from 'lucide-react'
+import Image from "next/image";
 
 import { AddressProps } from "@/app/interface/addressInterface";
-import { getAddress } from "@/lib/getAddressData";
 import { InsightProps } from "@/app/interface/insightInterface";
-import { AddressCard } from "./address-card";
-import { SelectedCard } from "./selected-card";
-import RootLayout from "@/app/layout";
-import Image from "next/image";
+import { AddressCard } from "@/components/address-card";
+import { SelectedCard } from "@/components/selected-card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+
+import { getAddress } from "@/lib/getAddressData";
 import { getAddressInsight } from "@/lib/getAddressInsight";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
-
 
 export default function Map() {
   // const [address, setAddress] = useState<LatLngLiteral>()
@@ -70,7 +68,6 @@ export default function Map() {
   }
 
   return (
-    <RootLayout>
       <div className='relative h-screen overflow-hidden'>
         <div className="px-6 py-3 flex items-center justify-between border-b">
           <div className='flex items-center'>
@@ -100,7 +97,7 @@ export default function Map() {
           <div className='flex flex-col flex-1 rounded-xl border'>
             <div className='grid grid-rows-1 flex-1 bg-slate-200  min-w-[25rem]'>
               <GoogleMap
-                zoom={10}
+                zoom={15}
                 center={center}
                 mapContainerClassName="map-container"
                 options={options}
@@ -108,20 +105,20 @@ export default function Map() {
               >
                 <MarkerClusterer>
                   {(clusterer) =>
-                    addressData?.map((spot) => (
+                    addressData?.map((address) => (
                       <Marker
-                        key={spot.uuid}
+                        key={address.uuid}
                         position={
                           {
-                            lat: parseInt(spot.latitude),
-                            lng: parseInt(spot.longitude)
+                            lat: parseInt(address.latitude),
+                            lng: parseInt(address.longitude)
                           }
                         }
-                        title={spot.description}
+                        title={address.description}
                         clusterer={clusterer}
-                        label={spot.description}
+                        label={address.description}
                         onClick={() => {
-                          fetchLocation(spot);
+                          fetchLocation(address);
                         }}
                       />
                     ))
@@ -162,7 +159,6 @@ export default function Map() {
           </aside>
         </main>
       </div>
-    </RootLayout>
   );
 }
 
